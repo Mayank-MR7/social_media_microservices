@@ -1,29 +1,28 @@
-version: "3.8"
 
 services:
   api-gateway:
-    build: ./api-gateway
+    build: ./api_gateaway
     ports:
       - "3000:3000"
     env_file:
-      - ./api-gateway/.env
+      - ./api_gateaway/.env
     depends_on:
       - redis
       - rabbitmq
     environment:
       - REDIS_URL=redis://redis:6379
-      - RABBITMQ_URL=ampq://rabbitmq:5672
+      - RABBITMQ_URL=amqp://rabbitmq:5672
 
   identity-services:
-    build: ./identity-services
+    build: ./identity_services
     env_file:
-      - ./identity-services/.env
+      - ./identity_services/.env
     depends_on:
       - redis
       - rabbitmq
     environment:
       - REDIS_URL=redis://redis:6379
-      - RABBITMQ_URL=ampq://rabbitmq:5672
+      - RABBITMQ_URL=amqp://rabbitmq:5672
 
   post-service:
     build: ./post-service
@@ -34,7 +33,7 @@ services:
       - rabbitmq
     environment:
       - REDIS_URL=redis://redis:6379
-      - RABBITMQ_URL=ampq://rabbitmq:5672
+      - RABBITMQ_URL=amqp://rabbitmq:5672
 
   media-service:
     build: ./media-service
@@ -45,7 +44,7 @@ services:
       - rabbitmq
     environment:
       - REDIS_URL=redis://redis:6379
-      - RABBITMQ_URL=ampq://rabbitmq:5672
+      - RABBITMQ_URL=amqp://rabbitmq:5672
 
   search-service:
     build: ./search-service
@@ -56,7 +55,7 @@ services:
       - rabbitmq
     environment:
       - REDIS_URL=redis://redis:6379
-      - RABBITMQ_URL=ampq://rabbitmq:5672
+      - RABBITMQ_URL=amqp://rabbitmq:5672
 
 
 
