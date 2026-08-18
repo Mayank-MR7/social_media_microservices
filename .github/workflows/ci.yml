@@ -22,5 +22,22 @@ jobs:
         with:
           node-version: 18
 
-      - name: CI started
-        run: echo "CI pipeline started successfully!"
+      - name: Install API Gateway dependencies
+        working-directory: ./api_gateaway
+        run: npm ci
+
+      - name: Install Identity Service dependencies
+        working-directory: ./identity_services
+        run: npm ci
+
+      - name: Install Media Service dependencies
+        working-directory: ./media-service
+        run: npm ci
+
+      - name: Install Post Service dependencies
+        working-directory: ./post-service
+        run: npm ci
+
+      - name: Install Search Service dependencies
+        working-directory: ./search-service
+        run: npm ci
